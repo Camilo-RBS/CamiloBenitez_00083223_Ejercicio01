@@ -1,0 +1,22 @@
+relationship ff4f9f1e-fc8b-41d0-bbb7-cb1b561fe507
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dim_Vendedor.fecha_nacimiento
+	toColumn: LocalDateTable_da50f3f7-0b58-4c53-94c7-1bd5ca7e6563.Date
+
+relationship AutoDetected_3b45a1f6-9df0-4b76-a1dd-4a3b43f2bd86
+	fromColumn: Fact_Ventas.Canal
+	toColumn: dim_canal.id_canal
+
+relationship AutoDetected_e9c3786a-6cc8-48f8-8441-023102aee665
+	fromColumn: Fact_Ventas.Vehiculo
+	toColumn: dim_vehiculo.id_vehiculo
+
+relationship AutoDetected_2da12690-ee96-475d-bb77-5bb3083ca91d
+	fromColumn: Fact_Ventas.Vendedor
+	toColumn: Dim_Vendedor.ID_Vendedor
+
+relationship 1f68a55d-c730-4147-a23a-a5fcb400c2f3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Fact_Ventas.FechaReal
+	toColumn: LocalDateTable_fa898825-de67-4d48-9c10-1a5658e5be95.Date
+

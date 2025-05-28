@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "CamiloBenitez_00083223_Dash"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "57ca47f4-9af3-45aa-af2e-2ea814627ec2"
+  }
+}

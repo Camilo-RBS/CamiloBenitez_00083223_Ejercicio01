@@ -1,0 +1,150 @@
+table Fact_Ventas
+	lineageTag: d442b38c-0576-47ca-b1e1-e73e5125d9d8
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: c5e0d473-af71-4e8f-a4cb-b3471e1242b6
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column datekey
+		dataType: int64
+		formatString: 0
+		lineageTag: 97eed444-64f1-48cb-9dc9-8e16e8e7f780
+		summarizeBy: sum
+		sourceColumn: datekey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Canal
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f32469d-4757-42d3-857a-d80e58467ddb
+		summarizeBy: none
+		sourceColumn: Canal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		dataType: int64
+		formatString: 0
+		lineageTag: 0bac5b9b-9707-41d1-a40e-63f6f94d3bcb
+		summarizeBy: sum
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segmento
+		dataType: string
+		lineageTag: 61df367a-17d0-4c17-a576-9a7c80eefe44
+		summarizeBy: none
+		sourceColumn: Segmento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vehiculo
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a63ac0-5cce-4d14-ba34-b975e88b19d8
+		summarizeBy: none
+		sourceColumn: Vehiculo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Costo Vehículo'
+		dataType: double
+		lineageTag: 696a8bbb-dc85-439f-9699-879f435d8dbd
+		summarizeBy: sum
+		sourceColumn: Costo Vehículo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Precio Venta sin IGV'
+		dataType: double
+		lineageTag: da29d117-ddf6-4479-a2d9-826d7cdecd5c
+		summarizeBy: sum
+		sourceColumn: Precio Venta sin IGV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IGV
+		dataType: double
+		lineageTag: c52ef866-59cd-4526-a36f-a3c0d92a739f
+		summarizeBy: sum
+		sourceColumn: IGV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Sede
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a776cd4-1794-45c4-a567-0b7159bed669
+		summarizeBy: sum
+		sourceColumn: Sede
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendedor
+		dataType: int64
+		formatString: 0
+		lineageTag: 2eeec080-cd30-4b29-a3cd-fc1de2737a9e
+		summarizeBy: none
+		sourceColumn: Vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column AñoMes = FORMAT([FechaReal], "YYYY-MM")
+		lineageTag: daab94f1-c9d4-47cc-9f92-ed504fa3912c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column FechaReal =
+			DATE(
+			    DIVIDE(Fact_Ventas[datekey], 10000),
+			    MOD(DIVIDE(Fact_Ventas[datekey], 100), 100),
+			    MOD(Fact_Ventas[datekey], 100)
+			)
+		formatString: General Date
+		lineageTag: ceeaefbc-546d-47bc-9221-4bfe623e1605
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 1f68a55d-c730-4147-a23a-a5fcb400c2f3
+			defaultHierarchy: LocalDateTable_fa898825-de67-4d48-9c10-1a5658e5be95.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Precio Promedio por Canal' = ```
+			AVERAGE(Fact_Ventas[Precio Venta sin IGV])
+			
+			```
+		lineageTag: fa6a0f31-54e6-44cb-9179-11082369e08f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Fact_Ventas = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\rbsca\OneDrive\Desktop\CamiloBenitez_00083223_Ejercicio01\VentasVehiculos.xlsx"), null, true),
+				    Fact_Ventas_Table = Source{[Item="Fact_Ventas",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Fact_Ventas_Table,{{"ID", Int64.Type}, {"datekey", Int64.Type}, {"Canal", Int64.Type}, {"Cliente", Int64.Type}, {"Segmento", type text}, {"Vehiculo", Int64.Type}, {"Costo Vehículo", type number}, {"Precio Venta sin IGV", type number}, {"IGV", type number}, {"Sede", Int64.Type}, {"Vendedor", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

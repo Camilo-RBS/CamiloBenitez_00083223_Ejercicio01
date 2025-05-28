@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 618.20408916141378,
+            "y": 556.12074770176912
+          },
+          "nodeIndex": "dim_canal",
+          "nodeLineageTag": "259846a0-786c-4aa3-8306-0d193ab94c54",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 433.3905224587412,
+            "y": -50
+          },
+          "nodeIndex": "dim_vehiculo",
+          "nodeLineageTag": "de12ca88-f617-4f2a-b1d4-3093428f9d0d",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 162.94739744428608
+          },
+          "nodeIndex": "Dim_Vendedor",
+          "nodeLineageTag": "3aa4f98a-4ee0-4680-a560-eccafde4947a",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 335.73109107096366,
+            "y": 203.20874830162327
+          },
+          "nodeIndex": "Fact_Ventas",
+          "nodeLineageTag": "d442b38c-0576-47ca-b1e1-e73e5125d9d8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

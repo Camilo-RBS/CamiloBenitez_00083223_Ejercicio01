@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["dim_canal","dim_vehiculo","Dim_Vendedor","Fact_Ventas"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.143.878.0 (25.05)+b20aa3b866ec1b70879135a4e60e4b1301c75b21
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dim_canal
+ref table dim_vehiculo
+ref table Dim_Vendedor
+ref table DateTableTemplate_a9c256da-bfb9-480f-8d15-75340bcaa26e
+ref table LocalDateTable_da50f3f7-0b58-4c53-94c7-1bd5ca7e6563
+ref table Fact_Ventas
+ref table LocalDateTable_fa898825-de67-4d48-9c10-1a5658e5be95
+
+ref cultureInfo en-US
+
